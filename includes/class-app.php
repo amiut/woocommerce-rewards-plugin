@@ -62,7 +62,6 @@ final class App
 
         add_action('init', function() {
             $ledger = new Ledger(1);
-            var_dump($ledger->get_balance());
         });
     }
 
