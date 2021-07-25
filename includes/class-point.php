@@ -13,8 +13,7 @@ defined('ABSPATH') || exit;
 /**
  * CustomerRewards Point class
  */
-class Point extends Data
-{
+class Point extends Data {
     /**
 	 * Order Data array. This is the core order data exposed in APIs since 1.0.0.
 	 *
@@ -24,8 +23,7 @@ class Point extends Data
 	protected $data = array(
         'object_id'     => 0,
         'user_id'       => 0,
-        'action'        => '',
-        'group'         => '',
+        'type'          => '',
         'date'          => '',
         'amount'        => 0,
         'note'          => '',
@@ -133,15 +131,6 @@ class Point extends Data
      * @param string $context View or Edit context
      * @return
      */
-    public function get_group($context = 'view') {
-        return $this->get_prop('group', $context);
-    }
-
-    /**
-     *
-     * @param string $context View or Edit context
-     * @return
-     */
     public function get_date($context = 'view') {
         return $this->get_prop('date', $context);
     }
@@ -152,7 +141,7 @@ class Point extends Data
      * @return
      */
     public function get_amount($context = 'view') {
-        return $this->get_prop('amount', $context);
+        return floatval($this->get_prop('amount', $context));
     }
 
     /**
@@ -160,8 +149,8 @@ class Point extends Data
      * @param string $context View or Edit context
      * @return
      */
-    public function get_action($context = 'view') {
-        return $this->get_prop('action', $context);
+    public function get_type($context = 'view') {
+        return $this->get_prop('type', $context);
     }
 
     /**
@@ -228,21 +217,12 @@ class Point extends Data
     }
 
     /**
-     * Set action
+     * Set type
      *
-     * @param string $action
+     * @param string $type
      */
-    public function set_action($action = '') {
-        $this->set_prop( 'action', $action );
-    }
-
-    /**
-     * Set group
-     *
-     * @param string $group
-     */
-    public function set_group($group = '') {
-        $this->set_prop( 'group', $group );
+    public function set_type($type = '') {
+        $this->set_prop( 'type', $type );
     }
 
     /**

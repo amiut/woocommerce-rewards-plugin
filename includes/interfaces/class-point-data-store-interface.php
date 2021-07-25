@@ -41,20 +41,11 @@ interface Point_Data_Store_Interface {
 	 */
 	public function delete( &$point );
 
-	/**
-     * Check if an entry is pointed
-     *
-     * @param int $entry_id
-     *
-     * @return bool
-     */
-	public function is_pointed($entry_id, $user_id);
-
     /**
      * Query Points
      *
      * @param array $args
      * @return mixed
      */
-    public function get_points($args = []);
+    public function get_points_transactions($args = []);
 }

@@ -60,6 +60,10 @@ final class App
         $this->init();
         $this->init_hooks();
 
+        add_action('init', function() {
+            $ledger = new Ledger(1);
+            var_dump($ledger->get_balance());
+        });
     }
 
     public function init_hooks() {

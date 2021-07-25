@@ -19,7 +19,7 @@ abstract class REST_Controller extends \WP_REST_Controller
      *
      * @var string
      */
-    public $namespace = 'dwebwishlist/v1';
+    public $namespace = 'points/v1';
 
     /**
      * REST Route

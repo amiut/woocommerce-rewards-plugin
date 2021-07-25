@@ -29,6 +29,8 @@ class Install
 			return;
         }
 
+        ob_start();
+
 		// If we made it till here nothing is running yet, lets set the transient now.
 		set_transient( 'dweb_cr_plugin_installing', 'yes', MINUTE_IN_SECONDS * 10 );
 		self::create_tables();
@@ -109,24 +111,17 @@ class Install
     private static function get_schema() {
 		global $wpdb;
 		$collate = '';
+
 		if ( $wpdb->has_cap( 'collation' ) ) {
 			$collate = $wpdb->get_charset_collate();
         }
-
-        /*
-		 * Indexes have a maximum size of 767 bytes. Historically, we haven't need to be concerned about that.
-		 * As of WP 4.2, however, they moved to utf8mb4, which uses 4 bytes per character. This means that an index which
-		 * used to have room for floor(767/3) = 255 characters, now only has room for floor(767/4) = 191 characters.
-		 */
-		$max_index_length = 191;
 
         $tables = "
 CREATE TABLE {$wpdb->prefix}points_transactions(
     ID bigint(20) UNSIGNED NOT NULL auto_increment,
     object_id bigint(20) UNSIGNED NOT NULL DEFAULT 0,
     user_id bigint(20) UNSIGNED NOT NULL DEFAULT 0,
-    action varchar(200),
-    group varchar(200),
+    type ENUM('add', 'sub'),
     date datetime NOT NULL default '0000-00-00 00:00:00',
     amount float(10) UNSIGNED NOT NULL DEFAULT 0,
     note longtext NULL,

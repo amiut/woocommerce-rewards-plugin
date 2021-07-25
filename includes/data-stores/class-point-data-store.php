@@ -11,22 +11,26 @@ namespace Dornaweb\CustomerRewards\Data_Stores;
 defined('ABSPATH') || exit;
 
 class Point_Data_Store implements \Dornaweb\CustomerRewards\Interfaces\Point_Data_Store_Interface {
+    private $valid_fields = ['object_id', 'user_id', 'type', 'date', 'amount', 'note'];
+
     public function create(&$point) {
         global $wpdb;
 
         $wpdb->insert(
-            $wpdb->prefix . 'dweb_points',
+            $wpdb->prefix . 'points_transactions',
             [
-                'entry_id'      => $point->get_entry_id(),
-                'post_type'     => $post_type,
-                'list_id'       => $point->get_list_id(),
+                'object_id'     => $point->get_object_id(),
                 'user_id'       => $point->get_user_id(),
+                'type'          => $point->get_type(),
+                'date'          => $point->get_date(),
+                'amount'        => $point->get_amount(),
                 'note'          => $point->get_note(),
             ],
             [
                 '%d',
-                '%s',
                 '%d',
+                '%s',
+                '%s',
                 '%d',
                 '%s',
             ]
@@ -50,11 +54,9 @@ class Point_Data_Store implements \Dornaweb\CustomerRewards\Interfaces\Point_Dat
 
 		$point->set_defaults();
 
-        $fields = ['entry_id', 'list_id', 'user_id', 'note'];
-
 		$data = $wpdb->get_row(
             $wpdb->prepare(
-                "SELECT ". implode(', ', $fields) ." FROM {$wpdb->prefix}dweb_points WHERE ID = %d LIMIT 1;",
+                "SELECT ". implode(', ', $this->valid_fields) ." FROM {$wpdb->prefix}points_transactions WHERE ID = %d LIMIT 1;",
                 $point->get_id()
             )
         );
@@ -65,10 +67,10 @@ class Point_Data_Store implements \Dornaweb\CustomerRewards\Interfaces\Point_Dat
 
 		$point->set_props(
             array_combine(
-                $fields,
+                $this->valid_fields,
                 array_map(function($field) use($data) {
                     return $data->$field;
-                }, $fields)
+                }, $this->valid_fields)
             )
 		);
         $point->set_object_read( true );
@@ -84,7 +86,7 @@ class Point_Data_Store implements \Dornaweb\CustomerRewards\Interfaces\Point_Dat
 		global $wpdb;
 
 		$wpdb->delete(
-			$wpdb->prefix . 'dweb_points',
+			$wpdb->prefix . 'points_transactions',
 			array(
 				'ID' => $point->get_id(),
 			),
@@ -112,21 +114,20 @@ class Point_Data_Store implements \Dornaweb\CustomerRewards\Interfaces\Point_Dat
      * @param array $args
      * @return mixed
      */
-    public function get_points($args = []) {
+    public function get_points_transactions($args = []) {
         global $wpdb;
 
         $args = wp_parse_args(
 			$args,
-			[
-				'list_id'       => 0,
-				'user_id'       => 0,
-				'post_type'     => '',
-                'entry_id'      => 0,
-                'return'        => 'objects'
-            ]
+            array_merge(
+                array_combine($this->valid_fields, [0, 0, '', '', 0, '']),
+                [
+                    'return' => 'objects'
+                ]
+            )
 		);
 
-        $valid_fields       = ['ID', 'entry_id', 'list_id', 'user_id', 'note'];
+        $valid_fields = array_merge($this->valid_fields, ['ID']);
 		$get_results_output = ARRAY_A;
 
         if ( 'ids' === $args['return'] ) {
@@ -140,22 +141,18 @@ class Point_Data_Store implements \Dornaweb\CustomerRewards\Interfaces\Point_Dat
 		}
 
         $query = [];
-        $query[] = "SELECT {$fields} FROM {$wpdb->prefix}dweb_points WHERE 1=1";
+        $query[] = "SELECT {$fields} FROM {$wpdb->prefix}points_transactions WHERE 1=1";
 
-        if ($args['list_id']) {
-            $query[] = $wpdb->prepare( 'AND list_id = %d', absint( $args['list_id'] ) );
+        if ($args['object_id']) {
+            $query[] = $wpdb->prepare( 'AND object_id = %d', absint( $args['object_id'] ) );
         }
 
         if ($args['user_id']) {
             $query[] = $wpdb->prepare( 'AND user_id = %d', absint( $args['user_id'] ) );
         }
 
-        if ($args['entry_id']) {
-            $query[] = $wpdb->prepare( 'AND entry_id = %d', absint( $args['entry_id'] ) );
-        }
-
-        if ($args['post_type']) {
-            $query[] = $wpdb->prepare( 'AND post_type = %s', $args['post_type'] );
+        if ($args['type']) {
+            $query[] = $wpdb->prepare( 'AND type = %s', $args['type'] );
         }
 
         // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
