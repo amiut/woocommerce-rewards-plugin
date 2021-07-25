@@ -68,6 +68,7 @@ final class App
 
     public function init_hooks() {
         add_action( 'init', array( $this, 'load_rest_api' ) );
+        $this->load_reward_actions();
     }
 
     /**
@@ -145,5 +146,12 @@ final class App
      */
     public function load_rest_api() {
         \Dornaweb\CustomerRewards\Rest_API\Server::instance()->init();
+    }
+
+    /**
+     * Load Reward actions
+     */
+    public function load_reward_actions() {
+        \Dornaweb\CustomerRewards\Rewards\Rewards::instance()->init();
     }
 }

@@ -5,7 +5,7 @@
  * @package WooCommerce\Utilities
  */
 
-namespace Dornaweb\CustomerRewards\Rest_API\Utils;
+namespace Dornaweb\CustomerRewards\Utils;
 
 /**
  * Singleton trait.

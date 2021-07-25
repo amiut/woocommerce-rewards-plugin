@@ -49,12 +49,12 @@ class Ledger {
         }
 
         Points_Factory::tx([
-            'type'      => 'add',
-            'user_id'   => $this->get_user_id(),
-            'amount'    => $amount,
-            'note'      => $note,
-            'date'      => $date,
-            'note'      => $note,
+            'type'          => 'add',
+            'user_id'       => $this->get_user_id(),
+            'amount'        => $amount,
+            'object_id'     => $object_id,
+            'date'          => $date,
+            'note'          => $note,
         ]);
     }
 
@@ -74,12 +74,12 @@ class Ledger {
         }
 
         Points_Factory::tx([
-            'type'      => 'sub',
-            'amount'    => $amount,
-            'user_id'   => $this->get_user_id(),
-            'note'      => $note,
-            'date'      => $date,
-            'note'      => $note,
+            'type'          => 'sub',
+            'amount'        => $amount,
+            'user_id'       => $this->get_user_id(),
+            'object_id'     => $object_id,
+            'date'          => $date,
+            'note'          => $note,
         ]);
     }
 

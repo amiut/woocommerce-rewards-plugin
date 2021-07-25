@@ -6,7 +6,7 @@
  */
 
 namespace Dornaweb\CustomerRewards\Rest_API;
-use Dornaweb\CustomerRewards\Rest_API\Utils\Singleton_Trait;
+use \Dornaweb\CustomerRewards\Utils\Singleton_Trait;
 
 defined( 'ABSPATH' ) || exit;
 
