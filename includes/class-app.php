@@ -61,7 +61,8 @@ final class App
         $this->init_hooks();
 
         add_action('init', function() {
-            $ledger = new Ledger(1);
+            var_dump(Conversion_Helper::set_rate("BTC", 0.000001));
+            var_dump(Conversion_Helper::get_rates());
         });
     }
 

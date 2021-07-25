@@ -9,7 +9,7 @@
 namespace Dornaweb\CustomerRewards\Interfaces;
 
 /**
- * WC Data Store Interface
+ * Data Store Interface
  *
  * @version  1.0.0
  */

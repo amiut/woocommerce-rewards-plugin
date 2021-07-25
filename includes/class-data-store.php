@@ -34,6 +34,7 @@ class Data_Store {
 	 */
 	private $stores = array(
 		'point'                => '\\Dornaweb\\CustomerRewards\\Data_Stores\\Point_Data_Store',
+		'conversion-rate'      => '\\Dornaweb\\CustomerRewards\\Data_Stores\\Conversion_Rate_Data_Store',
 	);
 
 	/**
