@@ -64,6 +64,7 @@ class Server {
 	 */
 	protected function get_v1_controllers() {
 		return array(
+            'swap' => '\Dornaweb\CustomerRewards\Rest_API\Controllers\V1\Swap_REST_Controller',
 		);
 	}
 

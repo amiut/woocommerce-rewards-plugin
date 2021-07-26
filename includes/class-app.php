@@ -59,11 +59,6 @@ final class App
         $this->includes();
         $this->init();
         $this->init_hooks();
-
-        add_action('init', function() {
-            var_dump(Conversion_Helper::set_rate("BTC", 0.000001));
-            var_dump(Conversion_Helper::get_rates());
-        });
     }
 
     public function init_hooks() {
