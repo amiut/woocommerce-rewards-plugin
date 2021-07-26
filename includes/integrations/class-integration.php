@@ -14,6 +14,8 @@ class Integration {
     use Singleton_Trait;
 
     public function init() {
-        add_action('dweb_rewards_swap_method', [$this, 'callback']);
+        if (method_exists($this, 'swap_callback')) {
+            add_action('dweb_rewards_swap_method', [$this, 'swap_callback'], 10, 4);
+        }
     }
 }

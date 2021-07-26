@@ -62,4 +62,8 @@ class Conversion_Helper {
 
         return $rate ? $rate->get_rate() : false;
     }
+
+    public static function get_swap_amount($points, $currency = '') {
+        return $points * self::get_rate($currency);
+    }
 }

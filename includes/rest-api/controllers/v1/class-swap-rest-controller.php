@@ -56,7 +56,13 @@ class Swap_REST_Controller extends \Dornaweb\CustomerRewards\Rest_API\REST_Contr
                 throw new REST_Exception('swap_method_not_callable', __('There is a problem with swapping, please contact support', 'dwebcr'), 500);
             }
 
-            call_user_func_array($swap_method, [$amount, $current_user->ID, $request]);
+            $results = call_user_func_array($swap_method, [$amount, $current_user->ID, $ledger, $request]);
+
+            if ($results) {
+                wp_send_json_success([
+                    'message' => __('Swap successful', 'dwebcr')
+                ]);
+            }
 
         } catch (Data_Exception $e) {
             wp_send_json_error($e->getErrorData(), $e->getCode());

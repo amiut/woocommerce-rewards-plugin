@@ -6,17 +6,28 @@
  */
 
 namespace Dornaweb\CustomerRewards\Integrations;
+use Dornaweb\CustomerRewards\Data_Exception;
+use Dornaweb\CustomerRewards\Conversion_Helper;
 
 defined( 'ABSPATH' ) || exit;
 
 class Tera_Wallet_Integration extends Integration {
-    public function callback() {
+    public function swap_callback() {
         return [$this, 'top_up_wallet'];
     }
 
-    public function top_up_wallet() {
-        wp_send_json_success([
-            'Salam' => true
-        ]);
+    /**
+     *
+     * @return bool true if successful | false if failed
+     */
+    public function top_up_wallet($amount, $user_id, $ledger, $request) {
+        if (!class_exists('Woo_Wallet_Wallet')) {
+            throw new Data_Exception('swap_tera_wallet_class_not_defined', __('There is a problem with swapping, please contact support', 'dwebcr'), 500);
+        }
+
+        $wallet = new \Woo_Wallet_Wallet();
+        $wallet->credit('', Conversion_Helper::get_swap_amount($amount), __('Swapping earned points', 'dwebcr'));
+        $ledger->spend($amount, __('Swapping earned points', 'dwebcr'));
+        return true;
     }
 }
