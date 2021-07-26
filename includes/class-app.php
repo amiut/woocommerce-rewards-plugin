@@ -39,6 +39,14 @@ final class App
     public $api = '';
 
     /**
+     * Integrations
+     *
+     * @since 1.0
+     * @var CustomerRewards\Integrations\Integration[]
+     */
+    public $integrations = [];
+
+    /**
      * Return the plugin instance.
      *
      * @return Dornaweb_Pack
@@ -64,6 +72,7 @@ final class App
     public function init_hooks() {
         add_action( 'init', array( $this, 'load_rest_api' ) );
         $this->load_reward_actions();
+        $this->integrations();
     }
 
     /**
@@ -148,5 +157,18 @@ final class App
      */
     public function load_reward_actions() {
         \Dornaweb\CustomerRewards\Rewards\Rewards::instance()->init();
+    }
+
+    /**
+     * Third-party and plugins integrations
+     */
+    public function integrations() {
+        $integration_classes = apply_filters('dweb_customer_reward_integration_classes', [
+            'tera_wallet'   => '\\Dornaweb\\CustomerRewards\\Integrations\\Tera_Wallet_Integration'
+        ]);
+
+        foreach ($integration_classes as $name => $class_name) {
+            $this->integrations[$name] = $class_name::instance()->init();
+        }
     }
 }
