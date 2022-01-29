@@ -39,7 +39,7 @@ class User_Reviews_Product extends \Dornaweb\CustomerRewards\Rewards\Reward_Acti
         $user_orders = get_posts([
             'numberposts' => -1,
             'meta_key'    => '_customer_user',
-            'meta_value'  => $user,
+            'meta_value'  => $current_user->ID,
             'post_type'   => wc_get_order_types(),
             'post_status' => array_keys(wc_get_is_paid_statuses())
         ]);
