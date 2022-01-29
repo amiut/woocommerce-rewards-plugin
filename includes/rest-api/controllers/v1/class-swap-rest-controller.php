@@ -52,6 +52,11 @@ class Swap_REST_Controller extends \Dornaweb\CustomerRewards\Rest_API\REST_Contr
                 throw new REST_Exception('swap_insufficient_balance', __('insufficient balance', 'dwebcr'), 400);
             }
 
+            $min_swap = absint(get_option('rewards_min_swap'));
+            if ($amount < $min_swap) {
+                throw new REST_Exception('min_swap_error', sprintf(__('Minimum swap amount is %d coins', 'dwebcr'), $min_swap), 400);
+            }
+
             if (!$swap_method || !is_callable($swap_method)) {
                 throw new REST_Exception('swap_method_not_callable', __('There is a problem with swapping, please contact support', 'dwebcr'), 500);
             }

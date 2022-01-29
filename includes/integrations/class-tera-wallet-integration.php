@@ -28,6 +28,9 @@ class Tera_Wallet_Integration extends Integration {
         $wallet = new \Woo_Wallet_Wallet();
         $wallet->credit('', Conversion_Helper::get_swap_amount($amount), __('Swapping earned points', 'dwebcr'));
         $ledger->spend($amount, __('Swapping earned points', 'dwebcr'));
-        return true;
+
+        wp_send_json_success([
+            'message' => sprintf(__('You have successfully spent %d coins, you wallet was credited with %s', 'dwebcr'), $amount, wc_price(Conversion_Helper::get_swap_amount($amount)))
+        ]);
     }
 }

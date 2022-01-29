@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Dornaweb Rewards\n"
-"POT-Creation-Date: 2022-01-29 17:35+0330\n"
-"PO-Revision-Date: 2022-01-29 17:36+0330\n"
+"POT-Creation-Date: 2022-01-29 21:53+0330\n"
+"PO-Revision-Date: 2022-01-29 21:53+0330\n"
 "Last-Translator: \n"
 "Language-Team: Dornaweb\n"
 "Language: fa\n"
@@ -16,26 +16,34 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: includes/admin/class-admin.php:17
+#: includes/admin/class-admin.php:18
 msgid "Rewards"
 msgstr "پاداش ها"
 
-#: includes/admin/class-admin.php:26
+#: includes/admin/class-admin.php:27
 msgid "Rewards Settings"
 msgstr "تنظیمات افزونه پاداش"
 
-#: includes/admin/class-admin.php:27
+#: includes/admin/class-admin.php:28
 msgid "You can tweak Points and Rewards plugin settings in this page"
 msgstr "در این صفحه میتوانید تنظیمات مربوط به افزونه پاداش را تغییر دهید"
 
-#: includes/admin/views/settings.php:6
+#: includes/admin/class-admin.php:34
+msgid "Min Swap amount"
+msgstr "حداقل تعداد برای تبدیل"
+
+#: includes/admin/class-admin.php:35
+msgid "Minimum number of coins user needs for swapping"
+msgstr "حداقل تعداد کوین که کاربر باید داشته باشد تا بتواند تبدیل انجام دهد"
+
+#: includes/admin/views/settings.php:5
 msgid "Conversion Rates"
 msgstr "نرخ های تبدیل"
 
 #: includes/class-data-store.php:77 includes/class-data-store.php:83
 #: includes/class-data-store.php:89
 msgid "Invalid data store."
-msgstr "پایگاه داده معتبر نیست"
+msgstr "پایگاه داده معتبر نیست."
 
 #: includes/class-ledger.php:44 includes/class-ledger.php:65
 #: includes/class-points-factory.php:33
@@ -59,10 +67,10 @@ msgstr "نوع باید `add` یا `sub` باشد"
 #: includes/data-stores/class-conversion-rate-data-store.php:59
 #: includes/data-stores/class-point-data-store.php:65
 msgid "Invalid Point."
-msgstr "امتیاز نامعتبر"
+msgstr "امتیاز نامعتبر."
 
 #: includes/integrations/class-tera-wallet-integration.php:25
-#: includes/rest-api/controllers/v1/class-swap-rest-controller.php:56
+#: includes/rest-api/controllers/v1/class-swap-rest-controller.php:61
 msgid "There is a problem with swapping, please contact support"
 msgstr "مشکلی با تبدیل امتیازات پیش آمده است، لطفا با پشتیبانی تماس بگیرید"
 
@@ -71,11 +79,21 @@ msgstr "مشکلی با تبدیل امتیازات پیش آمده است، ل�
 msgid "Swapping earned points"
 msgstr "تبدیل امتیازات بدست آورده شده"
 
+#: includes/integrations/class-tera-wallet-integration.php:33
+#, php-format
+msgid "You have successfully spent %d coins, you wallet was credited with %s"
+msgstr "مقدار %d از سی سی کوین شما کسر شد و مبلغ %s به کیف پول شما واریز شد."
+
 #: includes/rest-api/controllers/v1/class-swap-rest-controller.php:48
 msgid "Amount is not set"
 msgstr "مقدار وارد نشده"
 
-#: includes/rest-api/controllers/v1/class-swap-rest-controller.php:63
+#: includes/rest-api/controllers/v1/class-swap-rest-controller.php:57
+#, php-format
+msgid "Minimum swap amount is %d coins"
+msgstr "تعداد کوین های شما برای تبدیل باید حداقل %d عدد باشد"
+
+#: includes/rest-api/controllers/v1/class-swap-rest-controller.php:68
 msgid "Swap successful"
 msgstr "تبدیل با موفقیت انجام شد"
 

@@ -1,6 +1,5 @@
 <?php
 $rates = \Dornaweb\CustomerRewards\Conversion_Helper::get_rates();
-
 ?>
 <div>
     <h4><?php _e('Conversion Rates', 'dwebcr'); ?></h4>
@@ -8,7 +7,7 @@ $rates = \Dornaweb\CustomerRewards\Conversion_Helper::get_rates();
         <?php foreach ($rates as $symbol => $rate) : ?>
             <div style="display: flex; align-items:center; gap: 10px; margin-bottom: 10px;">
                 <input placeholder="symbol" name="rates[currency][]" type="text" required value="<?php echo $symbol; ?>" />
-                <input placeholder="rate" name="rates[rate][]" type="text" required value="<?php echo $rate; ?>" />
+                <input placeholder="rate" name="rates[rate][]" type="text" required value="<?php echo $rate < 1 ? sprintf("%f", $rate) : floatval($rate); ?>" />
 
                 <button type="button" class="button secondary" onclick="this.parentNode.remove(); return false;">&times;</button>
             </div>

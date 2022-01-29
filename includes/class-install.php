@@ -70,7 +70,9 @@ class Install
     /**
      * Create options
      */
-    public static function create_options() {}
+    public static function create_options() {
+        update_option('rewards_min_swap', 50);
+    }
 
     /**
      * Create user roles with permissions
@@ -139,7 +141,7 @@ CREATE TABLE {$wpdb->prefix}points_transactions(
 CREATE TABLE {$wpdb->prefix}points_rates(
     ID bigint(20) UNSIGNED NOT NULL auto_increment,
     currency varchar(10) NOT NULL,
-    rate float(10) UNSIGNED NOT NULL DEFAULT 0,
+    rate float(18) UNSIGNED NOT NULL DEFAULT 0,
     PRIMARY KEY (ID),
     UNIQUE KEY currency (currency(10))
 ) $collate;

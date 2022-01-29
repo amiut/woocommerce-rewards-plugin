@@ -29,10 +29,20 @@ class Admin {
 					'type'  => 'title',
 					'id'    => 'advanced_rewards_options',
                 ],
-                array(
+
+                [
+					'title'    => __( 'Min Swap amount', 'dwebcr' ),
+					'desc'     => __( 'Minimum number of coins user needs for swapping', 'dwebcr' ),
+					'id'       => 'rewards_min_swap',
+					'default'  => '',
+					'type'     => 'number',
+					'desc_tip' => true,
+                ],
+
+                [
 					'type' => 'sectionend',
 					'id'   => 'advanced_rewards_options',
-				),
+                ],
             ];
         }
 
@@ -64,6 +74,12 @@ class Admin {
             if (floatval($rate) > 0) {
                 \Dornaweb\CustomerRewards\Conversion_Helper::set_rate($currency, floatval($rate));
             }
+        }
+
+        $min_swap_amount = !empty($_POST['rewards_min_swap']) ? absint($_POST['rewards_min_swap']) : 0;
+
+        if ($min_swap_amount) {
+            update_option('rewards_min_swap', $min_swap_amount);
         }
     }
 }
