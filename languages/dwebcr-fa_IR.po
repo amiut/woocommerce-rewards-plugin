@@ -1,0 +1,87 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Dornaweb Rewards\n"
+"POT-Creation-Date: 2022-01-29 17:35+0330\n"
+"PO-Revision-Date: 2022-01-29 17:36+0330\n"
+"Last-Translator: \n"
+"Language-Team: Dornaweb\n"
+"Language: fa\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.3\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n==0 || n==1);\n"
+"X-Poedit-KeywordsList: __;_e;_n;esc_html_e\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: includes/admin/class-admin.php:17
+msgid "Rewards"
+msgstr "پاداش ها"
+
+#: includes/admin/class-admin.php:26
+msgid "Rewards Settings"
+msgstr "تنظیمات افزونه پاداش"
+
+#: includes/admin/class-admin.php:27
+msgid "You can tweak Points and Rewards plugin settings in this page"
+msgstr "در این صفحه میتوانید تنظیمات مربوط به افزونه پاداش را تغییر دهید"
+
+#: includes/admin/views/settings.php:6
+msgid "Conversion Rates"
+msgstr "نرخ های تبدیل"
+
+#: includes/class-data-store.php:77 includes/class-data-store.php:83
+#: includes/class-data-store.php:89
+msgid "Invalid data store."
+msgstr "پایگاه داده معتبر نیست"
+
+#: includes/class-ledger.php:44 includes/class-ledger.php:65
+#: includes/class-points-factory.php:33
+msgid "Amount must be greater than zero"
+msgstr "مقدار وارد شده باید بیشتر از صفر باشد"
+
+#: includes/class-ledger.php:69
+#: includes/rest-api/controllers/v1/class-swap-rest-controller.php:52
+msgid "insufficient balance"
+msgstr "موجودی کافی نیست"
+
+#: includes/class-points-factory.php:37 includes/class-points-factory.php:59
+#: includes/class-points-factory.php:77
+msgid "Invalid user"
+msgstr "کاربر نامعتبر"
+
+#: includes/class-points-factory.php:41
+msgid "Type must be `add` or `sub`"
+msgstr "نوع باید `add` یا `sub` باشد"
+
+#: includes/data-stores/class-conversion-rate-data-store.php:59
+#: includes/data-stores/class-point-data-store.php:65
+msgid "Invalid Point."
+msgstr "امتیاز نامعتبر"
+
+#: includes/integrations/class-tera-wallet-integration.php:25
+#: includes/rest-api/controllers/v1/class-swap-rest-controller.php:56
+msgid "There is a problem with swapping, please contact support"
+msgstr "مشکلی با تبدیل امتیازات پیش آمده است، لطفا با پشتیبانی تماس بگیرید"
+
+#: includes/integrations/class-tera-wallet-integration.php:29
+#: includes/integrations/class-tera-wallet-integration.php:30
+msgid "Swapping earned points"
+msgstr "تبدیل امتیازات بدست آورده شده"
+
+#: includes/rest-api/controllers/v1/class-swap-rest-controller.php:48
+msgid "Amount is not set"
+msgstr "مقدار وارد نشده"
+
+#: includes/rest-api/controllers/v1/class-swap-rest-controller.php:63
+msgid "Swap successful"
+msgstr "تبدیل با موفقیت انجام شد"
+
+#: includes/rewards/class-reward-action.php:39
+msgid "Identifier is not defined"
+msgstr "مشخصه تعریف نشده"
+
+#~ msgid "invalid amount"
+#~ msgstr "مقدار نامعتبر"

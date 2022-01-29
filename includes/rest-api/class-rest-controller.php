@@ -41,7 +41,7 @@ abstract class REST_Controller extends \WP_REST_Controller
      * Constructor
      */
     public function __construct() {
-        $this->one_methods = $this->one_methods ?: ['GET'];
+        $this->one_methods = !empty($this->one_methods) ? $this->one_methods : ['GET'];
 
         add_action( 'rest_api_init', [$this, 'register_routes']);
         add_action( 'rest_api_init', [$this, 'additional_routes']);

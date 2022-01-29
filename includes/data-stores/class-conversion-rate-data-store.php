@@ -26,7 +26,7 @@ class Conversion_Rate_Data_Store implements \Dornaweb\CustomerRewards\Interfaces
             ],
             [
                 '%s',
-                '%d',
+                '%f',
             ]
         );
 

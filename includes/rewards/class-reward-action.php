@@ -39,10 +39,6 @@ class Reward_Action {
             throw new Data_Exception('action_identifier_not_defined', __('Identifier is not defined', 'dwrewards'), 400);
         }
 
-        if (!$this->amount || $this->amount <= 0) {
-            throw new Data_Exception('action_invalid_amount', __('invalid amount', 'dwrewards'), 400);
-        }
-
         add_action("dweb_rewards_action_{$this->identifier}", [$this, 'pay'], 10, 4);
     }
 
@@ -50,6 +46,8 @@ class Reward_Action {
      * Pay credit
      */
     public function pay($user_id, $note = false, $object_id = 0, $date = '') {
+        if (!$this->get_amount()) return;
+
         if ($object_id) {
             $this->object_id = $object_id;
         }

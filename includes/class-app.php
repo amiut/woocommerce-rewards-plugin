@@ -65,11 +65,13 @@ final class App
     private function __construct() {
         $this->define_constants();
         $this->includes();
+        $this->load_admin();
         $this->init();
         $this->init_hooks();
     }
 
     public function init_hooks() {
+        add_action( 'init', array( $this, 'i18n' ) );
         add_action( 'init', array( $this, 'load_rest_api' ) );
         $this->load_reward_actions();
         $this->integrations();
@@ -157,6 +159,13 @@ final class App
      */
     public function load_reward_actions() {
         \Dornaweb\CustomerRewards\Rewards\Rewards::instance()->init();
+    }
+
+    /**
+     * Load Admin interface
+     */
+    public function load_admin() {
+        \Dornaweb\CustomerRewards\Admin\Admin::instance()->init();
     }
 
     /**

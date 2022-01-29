@@ -49,7 +49,8 @@ class Rewards {
 	 */
 	protected function get_actions() {
 		return apply_filters('dweb_customer_reward_actions', array(
-            'customer_purchases_product' => '\\Dornaweb\\CustomerRewards\\Rewards\\Actions\\User_Purchases_Product'
+            'customer_purchases_product' => '\\Dornaweb\\CustomerRewards\\Rewards\\Actions\\User_Purchases_Product',
+            'customer_reviews_product' => '\\Dornaweb\\CustomerRewards\\Rewards\\Actions\\User_Reviews_Product',
 		));
 	}
 }
